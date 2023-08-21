@@ -300,28 +300,114 @@ class CreditsAndInfoInterface extends StatelessWidget {
           //
           const SizedBox(width: 25.0),
 
+          //List Of Reviews
+          const Text(
+            'Reviews',
+            style: TextStyle(
+              fontSize: 23.0,
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+
+          //vertical space
+          const SizedBox(height: 10.0),
+
           //Reviews
-          Container(
-            width: 300,
+          SizedBox(
             height: 250,
-            color: Colors.white,
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Reviews',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 23,
-                    fontWeight: FontWeight.w500,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: revws.length,
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {},
+                  child: SizedBox(
+                    width: 340.0,
+                    child: Container(
+                      width: 340,
+                      height: 250,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: const Color.fromARGB(255, 226, 226, 226),
+                      ),
+                      child: Stack(
+                        children: [
+                          //Reviewer name
+                          Positioned(
+                            left: 8.0,
+                            top: 7.0,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'written by',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  revws[index]['author'].toString(),
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          //Rating
+                          Positioned(
+                            right: 40.0,
+                            top: 10.0,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text(
+                                  '⭐ Rating',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  revws[index]['author_details']['rating']
+                                      .toString(),
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          //Review content
+                          Positioned(
+                            bottom: 15.0,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: SizedBox(
+                                width: 340,
+                                height: 185,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 3.5),
+                                  child: Text(
+                                    revws[index]['content'],
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-
-                //vertical space
-                const SizedBox(height: 10.0),
-
-                
-              ],
+                );
+              },
             ),
           ),
         ],
