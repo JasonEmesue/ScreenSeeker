@@ -80,6 +80,7 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
     return CreditsAndInfoInterface(
       cst: cast,
       crw: crew,
+      revws: reviews,
     );
   }
 }
