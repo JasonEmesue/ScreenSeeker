@@ -463,7 +463,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
           ),
 
           //
-          const SizedBox(height: 25.0),
+          // const SizedBox(height: 25.0),
 
           //Images
           // const Text(
