@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:screenseeker/pages/actor_profile_page.dart';
 import 'package:screenseeker/pages/description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
@@ -171,7 +172,21 @@ class CreditsAndInfoInterface extends StatelessWidget {
               itemCount: cst.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => ActorProfilePage(
+                          name: cst[index]['name'],
+                          // ignore: prefer_interpolation_to_compose_strings
+                          profilePath: 'https://image.tmdb.org/t/p/w500' +
+                              cst[index]['profile_path'],
+                          popularity: cst[index]['popularity'].toString(),
+                          knownFor: cst[index]['known_for_department'],
+                        ),
+                      ),
+                    );
+                  },
                   child: SizedBox(
                     width: 140,
                     child: Column(
@@ -269,7 +284,21 @@ class CreditsAndInfoInterface extends StatelessWidget {
               itemCount: crw.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => ActorProfilePage(
+                          name: crw[index]['name'],
+                          // ignore: prefer_interpolation_to_compose_strings
+                          profilePath: 'https://image.tmdb.org/t/p/w500' +
+                              crw[index]['profile_path'],
+                          popularity: crw[index]['popularity'].toString(),
+                          knownFor: crw[index]['known_for_department'],
+                        ),
+                      ),
+                    );
+                  },
                   child: SizedBox(
                     width: 140,
                     child: Column(
