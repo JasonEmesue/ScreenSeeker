@@ -5,7 +5,11 @@ import 'package:screenseeker/pages/description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class CreditsAndInfoWidget extends StatefulWidget {
-  const CreditsAndInfoWidget({super.key});
+  const CreditsAndInfoWidget({
+    super.key,
+    required this.movieId,
+  });
+  final int movieId;
 
   @override
   State<CreditsAndInfoWidget> createState() => _CreditsAndInfoWidgetState();
@@ -42,7 +46,8 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
       ),
     );
 
-    Map castResults = await tmdbWithCustomLogs.v3.movies.getCredits(872585);
+    Map castResults =
+        await tmdbWithCustomLogs.v3.movies.getCredits(widget.movieId);
     setState(() {
       cast = castResults['cast'];
     });
@@ -59,7 +64,8 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
       ),
     );
 
-    Map crewResults = await tmdbWithCustomLogs.v3.movies.getCredits(872585);
+    Map crewResults =
+        await tmdbWithCustomLogs.v3.movies.getCredits(widget.movieId);
     setState(() {
       crew = crewResults['crew'];
     });
@@ -76,7 +82,8 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
       ),
     );
 
-    Map reviewsResults = await tmdbWithCustomLogs.v3.movies.getReviews(872585);
+    Map reviewsResults =
+        await tmdbWithCustomLogs.v3.movies.getReviews(widget.movieId);
     setState(() {
       reviews = reviewsResults['results'];
     });
@@ -93,7 +100,8 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
       ),
     );
 
-    Map imagesResults = await tmdbWithCustomLogs.v3.movies.getImages(872585);
+    Map imagesResults =
+        await tmdbWithCustomLogs.v3.movies.getImages(widget.movieId);
     setState(() {
       images = imagesResults['backdrops'];
     });
@@ -110,7 +118,8 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
       ),
     );
 
-    Map similarResults = await tmdbWithCustomLogs.v3.movies.getSimilar(872585);
+    Map similarResults =
+        await tmdbWithCustomLogs.v3.movies.getSimilar(widget.movieId);
     setState(() {
       similar = similarResults['results'];
     });

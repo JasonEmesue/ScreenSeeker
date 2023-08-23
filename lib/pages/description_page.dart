@@ -145,7 +145,9 @@ class DescriptionPage extends StatelessWidget {
           ),
 
           //Cast and Reviews
-          const CreditsAndInfoWidget(),
+          CreditsAndInfoWidget(
+            movieId: int.parse(movieId) ,
+          ),
         ],
       ),
     );
