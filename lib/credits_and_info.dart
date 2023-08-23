@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:screenseeker/pages/description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class CreditsAndInfoWidget extends StatefulWidget {
@@ -15,12 +17,16 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
   List cast = [];
   List crew = [];
   List reviews = [];
+  List images = [];
+  List similar = [];
 
   @override
   void initState() {
     loadCast();
     loadCrew();
     loadReviews();
+    loadImages();
+    loadSimilar();
     super.initState();
   }
 
@@ -75,12 +81,48 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
     });
   }
 
+  //Images
+  loadImages() async {
+    //TMDB Object
+    TMDB tmdbWithCustomLogs = TMDB(
+      ApiKeys(apiKey, readAccessToken),
+      logConfig: const ConfigLogger(
+        showLogs: true,
+        showErrorLogs: true,
+      ),
+    );
+
+    Map imagesResults = await tmdbWithCustomLogs.v3.movies.getImages(872585);
+    setState(() {
+      images = imagesResults['backdrops'];
+    });
+  }
+
+  //Similar
+  loadSimilar() async {
+    //TMDB Object
+    TMDB tmdbWithCustomLogs = TMDB(
+      ApiKeys(apiKey, readAccessToken),
+      logConfig: const ConfigLogger(
+        showLogs: true,
+        showErrorLogs: true,
+      ),
+    );
+
+    Map similarResults = await tmdbWithCustomLogs.v3.movies.getSimilar(872585);
+    setState(() {
+      similar = similarResults['results'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return CreditsAndInfoInterface(
       cst: cast,
       crw: crew,
       revws: reviews,
+      imgs: images,
+      simlr: similar,
     );
   }
 }
@@ -92,10 +134,14 @@ class CreditsAndInfoInterface extends StatelessWidget {
     required this.cst,
     required this.crw,
     required this.revws,
+    required this.imgs,
+    required this.simlr,
   });
   final List cst;
   final List crw;
   final List revws;
+  final List imgs;
+  final List simlr;
 
   @override
   Widget build(BuildContext context) {
@@ -331,7 +377,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
                         height: 250,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          color: const Color.fromARGB(255, 226, 226, 226),
+                          color: const Color.fromARGB(255, 221, 213, 213),
                         ),
                         child: Stack(
                           children: [
@@ -353,6 +399,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
                                     style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 17.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ],
@@ -361,23 +408,17 @@ class CreditsAndInfoInterface extends StatelessWidget {
 
                             //Rating
                             Positioned(
-                              right: 40.0,
-                              top: 10.0,
+                              right: 22.0,
+                              top: 8.0,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Text(
-                                    '⭐ Rating',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                  ),
                                   Text(
-                                    revws[index]['author_details']['rating']
-                                        .toString(),
+                                    '⭐ ${revws[index]['author_details']['rating']}',
                                     style: const TextStyle(
                                       color: Colors.black,
+                                      fontSize: 15.0,
                                     ),
                                   ),
                                 ],
@@ -386,14 +427,21 @@ class CreditsAndInfoInterface extends StatelessWidget {
 
                             //Review content
                             Positioned(
-                              bottom: 15.0,
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: SizedBox(
-                                  width: 340,
-                                  height: 185,
+                              bottom: 8.0,
+                              child: Container(
+                                width: 340,
+                                height: 195,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Colors.white,
+                                ),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 3.5),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 7.5,
+                                      vertical: 6.0,
+                                    ),
                                     child: Text(
                                       revws[index]['content'],
                                       style: const TextStyle(
@@ -407,6 +455,135 @@ class CreditsAndInfoInterface extends StatelessWidget {
                           ],
                         ),
                       ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+
+          //
+          const SizedBox(height: 25.0),
+
+          //Images
+          // const Text(
+          //   'Images',
+          //   style: TextStyle(
+          //     fontSize: 23.0,
+          //     color: Colors.white,
+          //     fontWeight: FontWeight.w500,
+          //   ),
+          // ),
+
+          // //vertical space
+          // const SizedBox(height: 10.0),
+
+          // //Image List
+          // SizedBox(
+          //   height: 250,
+          //   child: ListView.builder(
+          //     scrollDirection: Axis.horizontal,
+          //     itemCount: imgs.length,
+          //     itemBuilder: (context, index) {
+          //       return InkWell(
+          //         onTap: () {},
+          //         child: Padding(
+          //           padding: const EdgeInsets.only(right: 6.0),
+          //           child: SizedBox(
+          //             width: 200,
+          //             child: Container(
+          //               width: 250,
+          //               height: 200,
+          //               decoration: BoxDecoration(
+          //                 image: DecorationImage(
+          //                   fit: BoxFit.cover,
+          //                   image: NetworkImage(
+          //                     // ignore: prefer_interpolation_to_compose_strings
+          //                     'https://image.tmdb.org/t/p/w500' +
+          //                         imgs[index]['file_path'].toString(),
+          //                   ),
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
+
+          //
+          const SizedBox(height: 25.0),
+
+          //Similar Recommendations
+          const Text(
+            'Similar',
+            style: TextStyle(
+              fontSize: 23.0,
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+
+          //vertical space
+          const SizedBox(height: 10.0),
+
+          //Similar List
+          SizedBox(
+            height: 240,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: simlr.length,
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    // ignore: prefer_interpolation_to_compose_strings
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => DescriptionPage(
+                          name: simlr[index]['title'].toString(),
+                          description: simlr[index]['overview'].toString(),
+                          // ignore: prefer_interpolation_to_compose_strings
+                          bannerURL: 'https://image.tmdb.org/t/p/w500' +
+                              simlr[index]['backdrop_path'].toString(),
+                          // ignore: prefer_interpolation_to_compose_strings
+                          posterURL: 'https://image.tmdb.org/t/p/w500' +
+                              simlr[index]['poster_path'].toString(),
+                          vote: simlr[index]['vote_average'].toString(),
+                          releaseDate: simlr[index]['release_date'] ??
+                              simlr[index]['first_air_date'].toString(),
+                          movieId: simlr[index]['id'].toString(),
+                        ),
+                      ),
+                    );
+                  },
+                  child: SizedBox(
+                    width: 140.0,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 190.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  // ignore: prefer_interpolation_to_compose_strings
+                                  'https://image.tmdb.org/t/p/w500' +
+                                      simlr[index]['poster_path'].toString()),
+                            ),
+                          ),
+                        ),
+
+                        //vertical space
+                        const SizedBox(height: 8.0),
+
+                        //Title
+                        SizedBox(
+                          child: Text(
+                            simlr[index]['title'].toString(),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 );
