@@ -161,9 +161,9 @@ class CreditsAndInfoInterface extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //Name
-                              Padding(
-                                padding: const EdgeInsets.all(2.5),
-                                child: Flexible(
+                              Flexible(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2.5),
                                   child: Text(
                                     cst[index]['name'],
                                     style: const TextStyle(
@@ -176,9 +176,9 @@ class CreditsAndInfoInterface extends StatelessWidget {
                               ),
 
                               //Character
-                              Padding(
-                                padding: const EdgeInsets.all(2.5),
-                                child: Flexible(
+                              Flexible(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2.5),
                                   child: Text(
                                     cst[index]['character'],
                                     style: const TextStyle(
@@ -259,9 +259,9 @@ class CreditsAndInfoInterface extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //Name
-                              Padding(
-                                padding: const EdgeInsets.all(2.5),
-                                child: Flexible(
+                              Flexible(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2.5),
                                   child: Text(
                                     crw[index]['name'],
                                     style: const TextStyle(
@@ -274,9 +274,9 @@ class CreditsAndInfoInterface extends StatelessWidget {
                               ),
 
                               //Jobs
-                              Padding(
-                                padding: const EdgeInsets.all(2.5),
-                                child: Flexible(
+                              Flexible(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2.5),
                                   child: Text(
                                     crw[index]['job'],
                                     style: const TextStyle(
@@ -298,7 +298,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
           ),
 
           //
-          const SizedBox(width: 25.0),
+          const SizedBox(height: 25.0),
 
           //List Of Reviews
           const Text(
@@ -322,87 +322,90 @@ class CreditsAndInfoInterface extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {},
-                  child: SizedBox(
-                    width: 340.0,
-                    child: Container(
-                      width: 340,
-                      height: 250,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color.fromARGB(255, 226, 226, 226),
-                      ),
-                      child: Stack(
-                        children: [
-                          //Reviewer name
-                          Positioned(
-                            left: 8.0,
-                            top: 7.0,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'written by',
-                                  style: TextStyle(
-                                    color: Colors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 6.0),
+                    child: SizedBox(
+                      width: 340.0,
+                      child: Container(
+                        width: 340,
+                        height: 250,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: const Color.fromARGB(255, 226, 226, 226),
+                        ),
+                        child: Stack(
+                          children: [
+                            //Reviewer name
+                            Positioned(
+                              left: 8.0,
+                              top: 7.0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'written by',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  revws[index]['author'].toString(),
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 17.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          //Rating
-                          Positioned(
-                            right: 40.0,
-                            top: 10.0,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Text(
-                                  '⭐ Rating',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                Text(
-                                  revws[index]['author_details']['rating']
-                                      .toString(),
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          //Review content
-                          Positioned(
-                            bottom: 15.0,
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: SizedBox(
-                                width: 340,
-                                height: 185,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 3.5),
-                                  child: Text(
-                                    revws[index]['content'],
+                                  Text(
+                                    revws[index]['author'].toString(),
                                     style: const TextStyle(
                                       color: Colors.black,
+                                      fontSize: 17.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            //Rating
+                            Positioned(
+                              right: 40.0,
+                              top: 10.0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text(
+                                    '⭐ Rating',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    revws[index]['author_details']['rating']
+                                        .toString(),
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            //Review content
+                            Positioned(
+                              bottom: 15.0,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: SizedBox(
+                                  width: 340,
+                                  height: 185,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 3.5),
+                                    child: Text(
+                                      revws[index]['content'],
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
