@@ -80,6 +80,7 @@ class PopularPeopleInterface extends StatelessWidget {
                           popularity:
                               popuPeople[index]['popularity'].toString(),
                           knownFor: popuPeople[index]['known_for_department'],
+                          personId: popuPeople[index]['id'],
                         ),
                       ),
                     );

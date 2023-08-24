@@ -192,6 +192,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
                               cst[index]['profile_path'],
                           popularity: cst[index]['popularity'].toString(),
                           knownFor: cst[index]['known_for_department'],
+                          personId: cst[index]['id'],
                         ),
                       ),
                     );
@@ -304,6 +305,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
                               crw[index]['profile_path'],
                           popularity: crw[index]['popularity'].toString(),
                           knownFor: crw[index]['known_for_department'],
+                          personId: crw[index]['id'],
                         ),
                       ),
                     );
