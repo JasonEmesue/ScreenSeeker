@@ -568,7 +568,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
 
           //Similar List
           SizedBox(
-            height: 240,
+            height: 246,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: simlr.length,

@@ -106,7 +106,7 @@ class ActorCreditsAndInfoInterface extends StatelessWidget {
                     ),
                   ),
                   //
-                  SizedBox(height: 3.0),
+                  const SizedBox(height: 3.0),
 
                   //
                   Text(
