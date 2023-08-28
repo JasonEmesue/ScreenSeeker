@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:screenseeker/credits_and_info.dart';
+import 'package:screenseeker/movie_credits_and_info.dart';
 
-class DescriptionPage extends StatelessWidget {
-  const DescriptionPage({
+class MovieDescriptionPage extends StatelessWidget {
+  const MovieDescriptionPage({
     super.key,
     required this.name,
     required this.description,
@@ -145,8 +145,8 @@ class DescriptionPage extends StatelessWidget {
           ),
 
           //Cast and Reviews
-          CreditsAndInfoWidget(
-            movieId: int.parse(movieId) ,
+          MovieCreditsAndInfoWidget(
+            movieId: int.parse(movieId),
           ),
         ],
       ),

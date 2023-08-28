@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:screenseeker/pages/description_page.dart';
+import 'package:screenseeker/pages/movie_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class LatestReleasesWidget extends StatefulWidget {
@@ -85,7 +85,7 @@ class LatestReleasesInterface extends StatelessWidget {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => DescriptionPage(
+                          builder: (context) => MovieDescriptionPage(
                             name: lateRelease[index]['title'],
                             description: lateRelease[index]['overview'],
                             // ignore: prefer_interpolation_to_compose_strings
@@ -216,7 +216,7 @@ class NowPlayingInterface extends StatelessWidget {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => DescriptionPage(
+                        builder: (context) => MovieDescriptionPage(
                           name: nowPlyng[index]['title'],
                           description: nowPlyng[index]['overview'],
                           // ignore: prefer_interpolation_to_compose_strings

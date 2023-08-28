@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:screenseeker/pages/description_page.dart';
+import 'package:screenseeker/pages/movie_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class PopularMoviesWidget extends StatefulWidget {
@@ -77,7 +77,7 @@ class PopularMoviesInterface extends StatelessWidget {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => DescriptionPage(
+                        builder: (context) => MovieDescriptionPage(
                           name: popularMov[index]['title'],
                           description: popularMov[index]['overview'],
                           // ignore: prefer_interpolation_to_compose_strings

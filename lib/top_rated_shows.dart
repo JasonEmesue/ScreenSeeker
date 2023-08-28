@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:screenseeker/pages/description_page.dart';
+import 'package:screenseeker/pages/movie_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class TopRatedShowsWidget extends StatefulWidget {
@@ -83,7 +83,7 @@ class TopRatedShowsInterface extends StatelessWidget {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => DescriptionPage(
+                          builder: (context) => MovieDescriptionPage(
                             name: topRated[index]['original_name'] ??
                                 'Not Loaded',
                             description: topRated[index]['overview'],
@@ -204,7 +204,7 @@ class TabTopRatedShowsInterface extends StatelessWidget {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => DescriptionPage(
+                        builder: (context) => MovieDescriptionPage(
                           name: tabTpRtdShws[index]['original_name'],
                           description: tabTpRtdShws[index]['overview'],
                           // ignore: prefer_interpolation_to_compose_strings

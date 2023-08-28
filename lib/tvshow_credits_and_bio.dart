@@ -1,21 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:screenseeker/pages/actor_profile_page.dart';
-import 'package:screenseeker/pages/description_page.dart';
+import 'package:screenseeker/pages/movie_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
-class CreditsAndInfoWidget extends StatefulWidget {
-  const CreditsAndInfoWidget({
+class TvShowCreditsAndBioWidget extends StatefulWidget {
+  const TvShowCreditsAndBioWidget({
     super.key,
-    required this.movieId,
+    required this.seriesId,
   });
-  final int movieId;
+  final int seriesId;
 
   @override
-  State<CreditsAndInfoWidget> createState() => _CreditsAndInfoWidgetState();
+  State<TvShowCreditsAndBioWidget> createState() =>
+      _TvShowCreditsAndBioWidgetState();
 }
 
-class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
+class _TvShowCreditsAndBioWidgetState extends State<TvShowCreditsAndBioWidget> {
   final String apiKey = 'ad05813d395ceca68ddf2a4e553aca56';
   final readAccessToken =
       'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZDA1ODEzZDM5NWNlY2E2OGRkZjJhNGU1NTNhY2E1NiIsInN1YiI6IjY0YmZkM2YyNmQ0Yzk3MDExY2JhMmRkMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.B8WF9lb4Zl733EQmgFM56SCI_qAD-2bhrIjfxBMZSj0';
@@ -47,7 +48,7 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
     );
 
     Map castResults =
-        await tmdbWithCustomLogs.v3.movies.getCredits(widget.movieId);
+        await tmdbWithCustomLogs.v3.tv.getCredits(widget.seriesId);
     setState(() {
       cast = castResults['cast'];
     });
@@ -65,7 +66,7 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
     );
 
     Map crewResults =
-        await tmdbWithCustomLogs.v3.movies.getCredits(widget.movieId);
+        await tmdbWithCustomLogs.v3.tv.getCredits(widget.seriesId);
     setState(() {
       crew = crewResults['crew'];
     });
@@ -83,7 +84,7 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
     );
 
     Map reviewsResults =
-        await tmdbWithCustomLogs.v3.movies.getReviews(widget.movieId);
+        await tmdbWithCustomLogs.v3.tv.getReviews(widget.seriesId);
     setState(() {
       reviews = reviewsResults['results'];
     });
@@ -101,7 +102,7 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
     );
 
     Map imagesResults =
-        await tmdbWithCustomLogs.v3.movies.getImages(widget.movieId);
+        await tmdbWithCustomLogs.v3.tv.getImages(widget.seriesId);
     setState(() {
       images = imagesResults['backdrops'];
     });
@@ -119,7 +120,7 @@ class _CreditsAndInfoWidgetState extends State<CreditsAndInfoWidget> {
     );
 
     Map similarResults =
-        await tmdbWithCustomLogs.v3.movies.getSimilar(widget.movieId);
+        await tmdbWithCustomLogs.v3.tv.getSimilar(widget.seriesId);
     setState(() {
       similar = similarResults['results'];
     });
@@ -570,7 +571,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
 
           //Similar List
           SizedBox(
-            height: 246,
+            height: 250,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: simlr.length,
@@ -581,7 +582,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => DescriptionPage(
+                        builder: (context) => MovieDescriptionPage(
                           name: simlr[index]['title'].toString(),
                           description: simlr[index]['overview'].toString(),
                           // ignore: prefer_interpolation_to_compose_strings
@@ -620,7 +621,7 @@ class CreditsAndInfoInterface extends StatelessWidget {
                         //Title
                         SizedBox(
                           child: Text(
-                            simlr[index]['title'].toString(),
+                            simlr[index]['original_name'].toString(),
                           ),
                         ),
                       ],

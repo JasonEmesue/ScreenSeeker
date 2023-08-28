@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:screenseeker/pages/description_page.dart';
+import 'package:screenseeker/pages/movie_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class PopularTvShowsWidget extends StatefulWidget {
@@ -78,7 +78,7 @@ class PopularTvShowsInterface extends StatelessWidget {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => DescriptionPage(
+                        builder: (context) => MovieDescriptionPage(
                           name: popuTvShws[index]['original_name'],
                           description: popuTvShws[index]['overview'],
                           // ignore: prefer_interpolation_to_compose_strings
@@ -113,7 +113,8 @@ class PopularTvShowsInterface extends StatelessWidget {
                                 image: NetworkImage(
                                   // ignore: prefer_interpolation_to_compose_strings
                                   'https://image.tmdb.org/t/p/w500' +
-                                      popuTvShws[index]['poster_path'].toString(),
+                                      popuTvShws[index]['poster_path']
+                                          .toString(),
                                 ),
                               ),
                             ),

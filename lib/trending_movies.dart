@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:screenseeker/pages/description_page.dart';
+import 'package:screenseeker/pages/movie_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class TrendingMoviesWidget extends StatefulWidget {
@@ -89,7 +89,7 @@ class TrendingMoviesInterFace extends StatelessWidget {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => DescriptionPage(
+                          builder: (context) => MovieDescriptionPage(
                             name: trending[index]['title'] ??
                                 trending[index]['original_name'],
                             description: trending[index]['overview'],
