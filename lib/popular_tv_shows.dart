@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:screenseeker/pages/movie_description_page.dart';
+import 'package:screenseeker/pages/tvshow_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class PopularTvShowsWidget extends StatefulWidget {
@@ -78,19 +78,19 @@ class PopularTvShowsInterface extends StatelessWidget {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => MovieDescriptionPage(
-                          name: popuTvShws[index]['original_name'],
-                          description: popuTvShws[index]['overview'],
-                          // ignore: prefer_interpolation_to_compose_strings
-                          bannerURL: 'https://image.tmdb.org/t/p/w500' +
-                              popuTvShws[index]['backdrop_path'],
-                          // ignore: prefer_interpolation_to_compose_strings
-                          posterURL: 'https://image.tmdb.org/t/p/w500' +
-                              popuTvShws[index]['poster_path'],
-                          vote: popuTvShws[index]['vote_average'].toString(),
-                          releaseDate: popuTvShws[index]['first_air_date'],
-                          movieId: popuTvShws[index]['id'].toString(),
-                        ),
+                        builder: (context) => TvShowDescriptionPage(
+                                originalName: popuTvShws[index]['original_name'],
+                                description: popuTvShws[index]['overview'],
+                                // ignore: prefer_interpolation_to_compose_strings
+                                bannerURL: 'https://image.tmdb.org/t/p/w500' +
+                                    popuTvShws[index]['backdrop_path'],
+                                // ignore: prefer_interpolation_to_compose_strings
+                                posterURL: 'https://image.tmdb.org/t/p/w500' +
+                                    popuTvShws[index]['poster_path'],
+                                vote: popuTvShws[index]['vote_average'].toString(),
+                                firstAirDate: popuTvShws[index]['first_air_date'],
+                                seriesId: popuTvShws[index]['id'],
+                              ),
                       ),
                     );
                   },

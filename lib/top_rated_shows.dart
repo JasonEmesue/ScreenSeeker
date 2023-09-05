@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:screenseeker/pages/movie_description_page.dart';
+import 'package:screenseeker/pages/tvshow_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class TopRatedShowsWidget extends StatefulWidget {
@@ -83,21 +83,19 @@ class TopRatedShowsInterface extends StatelessWidget {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => MovieDescriptionPage(
-                            name: topRated[index]['original_name'] ??
-                                'Not Loaded',
-                            description: topRated[index]['overview'],
-                            // ignore: prefer_interpolation_to_compose_strings
-                            bannerURL: 'https://image.tmdb.org/t/p/w500' +
-                                topRated[index]['backdrop_path'],
-                            // ignore: prefer_interpolation_to_compose_strings
-                            posterURL: 'https://image.tmdb.org/t/p/w500' +
-                                topRated[index]['poster_path'],
-                            vote: topRated[index]['vote_average'].toString(),
-                            releaseDate:
-                                topRated[index]['first_air_date'].toString(),
-                            movieId: topRated[index]['id'].toString(),
-                          ),
+                          builder: (context) => TvShowDescriptionPage(
+                                originalName: topRated[index]['original_name'] ?? ['name'],
+                                description: topRated[index]['overview'],
+                                // ignore: prefer_interpolation_to_compose_strings
+                                bannerURL: 'https://image.tmdb.org/t/p/w500' +
+                                    topRated[index]['backdrop_path'],
+                                // ignore: prefer_interpolation_to_compose_strings
+                                posterURL: 'https://image.tmdb.org/t/p/w500' +
+                                    topRated[index]['poster_path'],
+                                vote: topRated[index]['vote_average'].toString(),
+                                firstAirDate: topRated[index]['first_air_date'].toString(),
+                                seriesId: topRated[index]['id'],
+                              ),
                         ),
                       );
                     },
@@ -204,19 +202,19 @@ class TabTopRatedShowsInterface extends StatelessWidget {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => MovieDescriptionPage(
-                          name: tabTpRtdShws[index]['original_name'],
-                          description: tabTpRtdShws[index]['overview'],
-                          // ignore: prefer_interpolation_to_compose_strings
-                          bannerURL: 'https://image.tmdb.org/t/p/w500' +
-                              tabTpRtdShws[index]['backdrop_path'],
-                          // ignore: prefer_interpolation_to_compose_strings
-                          posterURL: 'https://image.tmdb.org/t/p/w500' +
-                              tabTpRtdShws[index]['poster_path'],
-                          vote: tabTpRtdShws[index]['vote_average'].toString(),
-                          releaseDate: tabTpRtdShws[index]['first_air_date'],
-                          movieId: tabTpRtdShws[index]['id'].toString(),
-                        ),
+                        builder: (context) => TvShowDescriptionPage(
+                                originalName: tabTpRtdShws[index]['original_name'] ?? ['name'],
+                                description: tabTpRtdShws[index]['overview'],
+                                // ignore: prefer_interpolation_to_compose_strings
+                                bannerURL: 'https://image.tmdb.org/t/p/w500' +
+                                    tabTpRtdShws[index]['backdrop_path'],
+                                // ignore: prefer_interpolation_to_compose_strings
+                                posterURL: 'https://image.tmdb.org/t/p/w500' +
+                                    tabTpRtdShws[index]['poster_path'],
+                                vote: tabTpRtdShws[index]['vote_average'].toString(),
+                                firstAirDate: tabTpRtdShws[index]['first_air_date'].toString(),
+                                seriesId: tabTpRtdShws[index]['id'],
+                              ),
                       ),
                     );
                   },
