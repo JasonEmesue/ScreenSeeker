@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:screenseeker/pages/actor_profile_page.dart';
-import 'package:screenseeker/pages/movie_description_page.dart';
+import 'package:screenseeker/pages/tvshow_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class TvShowCreditsAndBioWidget extends StatefulWidget {
@@ -582,20 +582,19 @@ class CreditsAndInfoInterface extends StatelessWidget {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => MovieDescriptionPage(
-                          name: simlr[index]['title'].toString(),
-                          description: simlr[index]['overview'].toString(),
-                          // ignore: prefer_interpolation_to_compose_strings
-                          bannerURL: 'https://image.tmdb.org/t/p/w500' +
-                              simlr[index]['backdrop_path'].toString(),
-                          // ignore: prefer_interpolation_to_compose_strings
-                          posterURL: 'https://image.tmdb.org/t/p/w500' +
-                              simlr[index]['poster_path'].toString(),
-                          vote: simlr[index]['vote_average'].toString(),
-                          releaseDate: simlr[index]['release_date'] ??
-                              simlr[index]['first_air_date'].toString(),
-                          movieId: simlr[index]['id'].toString(),
-                        ),
+                        builder: (context) => TvShowDescriptionPage(
+                                originalName: simlr[index]['original_name'],
+                                description: simlr[index]['overview'],
+                                // ignore: prefer_interpolation_to_compose_strings
+                                bannerURL: 'https://image.tmdb.org/t/p/w500' +
+                                    simlr[index]['backdrop_path'],
+                                // ignore: prefer_interpolation_to_compose_strings
+                                posterURL: 'https://image.tmdb.org/t/p/w500' +
+                                    simlr[index]['poster_path'],
+                                vote: simlr[index]['vote_average'].toString(),
+                                firstAirDate: simlr[index]['first_air_date'],
+                                seriesId: simlr[index]['id'],
+                              ),
                       ),
                     );
                   },

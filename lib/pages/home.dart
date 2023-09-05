@@ -36,10 +36,11 @@ class _HomeState extends State<Home> {
                 const EdgeInsets.symmetric(horizontal: 7.0, vertical: 10.0),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 46, 58, 65)),
+                backgroundColor: const Color.fromARGB(255, 31, 30, 30),
+              ),
               onPressed: () {},
               child: const Text(
-                'Sign Up',
+                'Log In',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -119,12 +120,13 @@ class _HomeState extends State<Home> {
                           //Movies Button
                           CircleAvatar(
                             backgroundColor:
-                                const Color.fromARGB(255, 95, 94, 94),
+                                const Color.fromARGB(255, 31, 30, 30),
                             child: IconButton(
                               onPressed: () {
                                 Navigator.push(
                                   context,
-                                  CupertinoPageRoute(builder: (context) => const MoviesPage()),
+                                  CupertinoPageRoute(
+                                      builder: (context) => const MoviesPage()),
                                 );
                               },
                               color: Colors.purpleAccent,
@@ -140,13 +142,15 @@ class _HomeState extends State<Home> {
                                 const EdgeInsets.symmetric(horizontal: 13.0),
                             child: CircleAvatar(
                               backgroundColor:
-                                  const Color.fromARGB(255, 95, 94, 94),
+                                  const Color.fromARGB(255, 31, 30, 30),
                               child: IconButton(
                                 onPressed: () {
                                   Navigator.push(
-                                  context,
-                                  CupertinoPageRoute(builder: (context) => const TVShowsPage()),
-                                );
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) =>
+                                            const TVShowsPage()),
+                                  );
                                 },
                                 color: Colors.purpleAccent,
                                 icon: const Icon(
@@ -159,7 +163,7 @@ class _HomeState extends State<Home> {
                           //People Button
                           CircleAvatar(
                             backgroundColor:
-                                const Color.fromARGB(255, 95, 94, 94),
+                                const Color.fromARGB(255, 31, 30, 30),
                             child: IconButton(
                               onPressed: () {
                                 Navigator.push(
