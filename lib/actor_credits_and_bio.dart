@@ -332,21 +332,25 @@ class ActorCreditsAndBioInterface extends StatelessWidget {
                             context,
                             CupertinoPageRoute(
                               builder: (context) => MovieDescriptionPage(
-                                name: movCrdts[index]['title'],
-                                description: movCrdts[index]['overview'],
+                                name: movCrdts[index]['title'].toString(),
+                                description:
+                                    movCrdts[index]['overview'].toString(),
                                 // ignore: prefer_interpolation_to_compose_strings
                                 bannerURL:
                                     // ignore: prefer_interpolation_to_compose_strings
                                     'https://image.tmdb.org/t/p/w500' +
-                                        movCrdts[index]['backdrop_path'],
+                                        movCrdts[index]['backdrop_path']
+                                            .toString(),
                                 // ignore: prefer_interpolation_to_compose_strings
                                 posterURL:
                                     // ignore: prefer_interpolation_to_compose_strings
                                     'https://image.tmdb.org/t/p/w500' +
-                                        movCrdts[index]['poster_path'],
+                                        movCrdts[index]['poster_path']
+                                            .toString(),
                                 vote:
                                     movCrdts[index]['vote_average'].toString(),
-                                releaseDate: movCrdts[index]['release_date'],
+                                releaseDate:
+                                    movCrdts[index]['release_date'].toString(),
                                 movieId: movCrdts[index]['id'].toString(),
                               ),
                             ),
