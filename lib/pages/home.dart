@@ -4,7 +4,6 @@ import 'package:screenseeker/latest_releases_and_now_playing.dart';
 import 'package:screenseeker/pages/movies_page.dart';
 import 'package:screenseeker/pages/people_page.dart';
 import 'package:screenseeker/pages/tv_shows_page.dart';
-import 'package:screenseeker/search_config.dart';
 import 'package:screenseeker/top_rated_shows.dart';
 import 'package:screenseeker/trending_movies.dart';
 import 'package:screenseeker/top_rated_movies.dart';
@@ -19,8 +18,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final TextEditingController _searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -66,88 +63,6 @@ class _HomeState extends State<Home> {
                 height: 1170,
                 child: Column(
                   children: [
-                    //New Search Bar
-                    TextField(
-                      controller: _searchController,
-                      onSubmitted: (value) {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => SearchConfig(querry: value),
-                          ),
-                        );
-                      },
-                      decoration: InputDecoration(
-                        hintText: 'Search...',
-                        prefixIcon: const Icon(
-                          Icons.search,
-                        ),
-                        suffixIcon: IconButton(
-                          onPressed: () => _searchController.clear(),
-                          icon: const Icon(
-                            Icons.clear,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-
-                    //Search Bar
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.start,
-                    //   children: [
-                    //     Padding(
-                    //       padding: const EdgeInsets.only(top: 8.0),
-                    //       child: SearchBar(
-                    //         padding: const MaterialStatePropertyAll(
-                    //           EdgeInsets.symmetric(horizontal: 20.0),
-                    //         ),
-                    //         controller: _searchController,
-                    //         side: const MaterialStatePropertyAll(
-                    //           BorderSide(
-                    //             width: 9.0,
-                    //           ),
-                    //         ),
-                    //         leading: const Icon(
-                    //           Icons.search,
-                    //         ),
-                    //         constraints: const BoxConstraints(
-                    //           maxWidth: 312.0,
-                    //         ),
-                    //       ),
-                    //     ),
-
-                    //     //Search Button
-                    //     Padding(
-                    //       padding: const EdgeInsets.only(top: 8.0),
-                    //       child: MaterialButton(
-                    //         onPressed: () {
-                    //           Navigator.push(
-                    //             context,
-                    //             CupertinoPageRoute(
-                    //               builder: (context) => SearchConfig(
-                    //                   querry: _searchController.toString()),
-                    //             ),
-                    //           );
-                    //         },
-                    //         minWidth: 50.0,
-                    //         color: const Color.fromARGB(255, 107, 163, 109),
-                    //         shape: RoundedRectangleBorder(
-                    //           borderRadius: BorderRadius.circular(30.0),
-                    //         ),
-                    //         child: const Text(
-                    //           'Search',
-                    //           style: TextStyle(
-                    //             color: Colors.white,
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-
                     //Movies, TV, People
                     Padding(
                       padding: const EdgeInsets.only(
@@ -221,25 +136,6 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                     ),
-
-                    //Tab
-                    // const TabBarView(
-                    //   viewportFraction: 600,
-                    //   children: [
-                    //     Icon(
-                    //       Icons.insert_chart,
-                    //       size: 200,
-                    //     ),
-                    //     Icon(
-                    //       Icons.zoom_out_map_rounded,
-                    //       size: 200,
-                    //     ),
-                    //     Icon(
-                    //       Icons.hls,
-                    //       size: 200,
-                    //     ),
-                    //   ],
-                    // ),
 
                     //Latest Releases
                     const LatestReleasesWidget(),

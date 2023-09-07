@@ -428,16 +428,19 @@ class ActorCreditsAndBioInterface extends StatelessWidget {
                             context,
                             CupertinoPageRoute(
                               builder: (context) => TvShowDescriptionPage(
-                                originalName: tvCrdts[index]['original_name'],
-                                description: tvCrdts[index]['overview'],
+                                originalName:
+                                    tvCrdts[index]['original_name'].toString(),
+                                description:
+                                    tvCrdts[index]['overview'].toString(),
                                 // ignore: prefer_interpolation_to_compose_strings
                                 bannerURL: 'https://image.tmdb.org/t/p/w500' +
-                                    tvCrdts[index]['backdrop_path'],
+                                    tvCrdts[index]['backdrop_path'].toString(),
                                 // ignore: prefer_interpolation_to_compose_strings
                                 posterURL: 'https://image.tmdb.org/t/p/w500' +
-                                    tvCrdts[index]['poster_path'],
+                                    tvCrdts[index]['poster_path'].toString(),
                                 vote: tvCrdts[index]['vote_average'].toString(),
-                                firstAirDate: tvCrdts[index]['first_air_date'],
+                                firstAirDate:
+                                    tvCrdts[index]['first_air_date'].toString(),
                                 seriesId: tvCrdts[index]['id'],
                               ),
                             ),
