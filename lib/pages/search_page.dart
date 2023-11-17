@@ -108,6 +108,9 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 decoration: InputDecoration(
                   hintText: 'Search TV Shows...',
+                  hintStyle: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                  ),
                   
                   prefixIcon: const Icon(
                     Icons.search,
@@ -148,6 +151,9 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 decoration: InputDecoration(
                   hintText: 'Search People...',
+                  hintStyle: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                  ),
                   prefixIcon: const Icon(
                     Icons.search,
                   ),

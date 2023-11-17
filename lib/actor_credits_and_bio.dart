@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:screenseeker/actor_credits_tab.dart';
 import 'package:screenseeker/pages/movie_description_page.dart';
 import 'package:screenseeker/pages/tvshow_description_page.dart';
 import 'package:tmdb_api/tmdb_api.dart';
@@ -139,6 +140,7 @@ class _ActorCreditsAndBioState extends State<ActorCreditsAndBio> {
       biogrphy: biography,
       movCrdts: movieCredits,
       tvCrdts: tvCredits,
+      personId: widget.personId,
     );
   }
 }
@@ -152,12 +154,14 @@ class ActorCreditsAndBioInterface extends StatelessWidget {
     required this.biogrphy,
     required this.movCrdts,
     required this.tvCrdts,
+    required this.personId,
   });
   final Map bthday;
   final Map plceOfBrth;
   final Map biogrphy;
   final List movCrdts;
   final List tvCrdts;
+  final int personId;
 
   @override
   Widget build(BuildContext context) {
@@ -296,12 +300,37 @@ class ActorCreditsAndBioInterface extends StatelessWidget {
             ),
 
             //Credits Text
-            const Text(
-              'Credits',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 19.0,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text(
+                  'Credits',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 19.0,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 162.0),
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) =>
+                              ActorCreditsTab(personId: personId),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'View Full Credits',
+                      style: TextStyle(
+                        color: Colors.purpleAccent,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
 
             //Credits Tab (Movie, TV)
